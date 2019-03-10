@@ -1,4 +1,4 @@
-function [x,p1,p2,p4,p8] = test_least_squares()
+ function [x,p1,p2,p4,p8] = test_least_squares()
     
     data = load('DJI_2014_2019.dat'); 
     x = linspace(0,1,1000); 
@@ -9,8 +9,9 @@ function [x,p1,p2,p4,p8] = test_least_squares()
     [p1a, err1] = poly_least_squares(xi,yi,1); 
     [p2a, err2] = poly_least_squares(xi,yi,2); 
     [p4a, err4] = poly_least_squares(xi,yi,4); 
-    [p8a, err8] = poly_least_squares(xi,yi,8); 
+    [p8a, err8] = poly_least_squares(xi,yi,8);
 
+    pp1 = polyfit(xi,yi,8)
     p1 = evaluate_function(p1a, x); 
     p2 = evaluate_function(p2a, x); 
     p4 = evaluate_function(p4a, x); 
