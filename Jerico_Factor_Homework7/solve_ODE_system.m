@@ -1,0 +1,27 @@
+function [y,t] = solve_ODE_system()
+
+    y0 = [1; 2; 3]; 
+    NSTEPS = 1e5; 
+    DT = 1e-3; 
+    IOSTEP = 50; 
+    
+    fun = @(y, t) [
+        -y(1) + y(2) .* y(3); 
+        -y(2) + (y(3) - 2) .* y(1); 
+        1 - y(1) .* y(2)
+        ];
+    
+    [y,t] = AB2(fun,y0,NSTEPS, DT, IOSTEP); 
+    
+    figure(1) 
+    clf; 
+    plot(t,y(1,:), "DisplayName", "y1(t)")
+    hold;
+    plot(t,y(2,:),"DisplayName", "y2(t)")
+    plot(t,y(3,:),"DisplayName", "y3(t)")
+    legend();
+    
+    figure(2)
+    clf; 
+    plot3(y(1,:),y(2,:), y(3,:)); 
+end
